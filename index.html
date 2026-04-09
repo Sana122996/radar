@@ -21,6 +21,7 @@
                         "on-surface-variant": "#c9d1d9",
                         "outline-variant": "#30363d",
                         "tertiary": "#fcc419",
+                        "success": "#58d68d",
                     },
                     "borderRadius": {
                         "DEFAULT": "4px"
@@ -159,10 +160,13 @@
 <span class="w-2.5 h-2.5 bg-primary rounded-full animate-pulse"></span>
 <span class="font-label tracking-widest text-primary/80 font-bold uppercase text-[13px]">金十数据·实时更新</span>
 </div>
-<span class="font-label text-on-surface-variant/60 uppercase text-[13px]">2024.07.22 / 18:01:00</span>
+<span id="radar-date-display" class="font-label text-on-surface-variant/60 uppercase text-[13px] transition-colors duration-300">2024.07.22 / 18:01:00</span>
 </div>
 <div class="flex items-end justify-between border-b border-primary/20 pb-4">
-<h1 class="text-4xl heavy-serif tracking-tight text-on-surface">美伊红线雷达</h1>
+<div>
+    <h1 class="text-4xl heavy-serif tracking-tight text-on-surface">美伊红线雷达</h1>
+    <p class="text-[13px] font-bold text-on-surface-variant tracking-[0.1em] mt-1.5 uppercase">48小时升级风险雷达</p>
+</div>
 <div class="flex items-center gap-2 mb-2">
 <span class="material-symbols-outlined text-primary text-2xl emergency-glow">error</span>
 <span class="text-[14px] font-bold text-primary tracking-tighter emergency-glow">紧急警报</span>
@@ -184,8 +188,8 @@
 </svg>
 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 flex flex-col items-center bg-surface-container/95 rounded-full w-20 h-20 items-center justify-center border border-primary/30 shadow-2xl">
 <div class="flex flex-col items-center justify-center text-center">
-<span class="text-[11px] text-primary font-bold tracking-tight uppercase mb-0.5">升级指数</span>
-<span class="text-xl font-black font-headline text-white leading-none">82%</span>
+<span class="text-[14px] text-primary font-bold tracking-tight uppercase mb-0.5">升级指数</span>
+<span class="text-2xl font-black font-headline text-white leading-none">82%</span>
 </div>
 </div>
 <a class="absolute flex justify-center items-center" href="#indicator-negotiation" style="top: 23.7%; left: 34.8%; z-index: 30; width: 0; height: 0;">
@@ -220,149 +224,444 @@
 </a>
 
 <a class="absolute flex justify-center items-center" href="#indicator-energy" style="top: 50%; left: 15.6%; z-index: 30; width: 0; height: 0;">
-<div class="absolute left-3 radar-tag border border-primary/40 shadow-lg">
+<div class="absolute top-3 left-0 radar-tag border border-primary/40 shadow-lg">
 <span class="text-[11px] font-bold text-primary uppercase whitespace-nowrap">能源安全 86%</span>
 </div>
 <div class="absolute w-2.5 h-2.5 bg-primary rounded-full shadow-[0_0_10px_rgba(255,59,48,0.8)]"></div>
 </a>
 </div>
-<div class="grid grid-cols-2 gap-4">
+
+<div class="grid grid-cols-3 gap-3">
+    <div class="panel-glass p-3 rounded flex flex-col justify-center text-center">
+        <span class="text-[10px] text-on-surface-variant font-bold mb-1 tracking-widest">24小时变化</span>
+        <span class="text-3xl font-black font-headline text-primary leading-none flex justify-center items-center gap-1"><span class="text-xl">↑</span>23%</span>
+        <span class="text-[9px] text-on-surface-variant mt-1.5">对比前一日 58</span>
+    </div>
+    <div class="panel-glass p-3 rounded flex flex-col justify-center text-center">
+        <span class="text-[10px] text-on-surface-variant font-bold mb-1 tracking-widest">历史峰值</span>
+        <span class="text-3xl font-black font-headline text-primary leading-none">89%</span>
+        <span class="text-[9px] text-on-surface-variant mt-1.5">3月19日</span>
+    </div>
+    <div class="panel-glass p-3 rounded flex flex-col justify-center text-center">
+        <span class="text-[10px] text-on-surface-variant font-bold mb-1 tracking-widest">历史低点</span>
+        <span class="text-3xl font-black font-headline text-success leading-none">48%</span>
+        <span class="text-[9px] text-on-surface-variant mt-1.5">2月28日</span>
+    </div>
+</div>
+
+<div class="grid grid-cols-2 gap-4 mt-2">
 <div class="panel-glass p-3 rounded-lg flex flex-col min-h-[160px]">
-<div class="flex items-center gap-1.5 mb-2 border-b border-white/5 pb-2">
+<div class="flex items-center gap-1.5 mb-3 border-b border-white/5 pb-2">
 <span class="material-symbols-outlined text-[16px] text-on-surface-variant">history</span>
 <span class="text-[10px] font-black font-headline uppercase tracking-widest leading-tight">过去48小时关键转折</span>
 </div>
-<div class="flex-1 space-y-2">
-<div class="p-2 bg-surface-container-lowest/50 border border-outline-variant/10 rounded h-full">
-<p class="text-[9px] font-bold text-primary mb-1">北京时间4月8日 / 设拉子</p>
-<p class="text-[11px] text-on-surface-variant/90 leading-normal">发现异常无人机群活动，基地进入最高防御状态，局部防空火力网激活。</p>
+<div class="flex-1 space-y-2 overflow-y-auto max-h-[240px] no-scrollbar pr-1">
+    <div class="p-2 bg-surface-container-lowest/50 border border-outline-variant/10 rounded">
+        <div class="flex justify-between items-center mb-1">
+            <p class="text-[10px] font-bold text-primary">4月9日</p>
+            <span class="text-[9px] border border-outline-variant/30 px-1 rounded text-on-surface-variant">霍尔木兹</span>
+        </div>
+        <p class="text-[10px] text-on-surface-variant/90 leading-relaxed">AP 报道称伊朗在以军扩大黎巴嫩打击后再次关闭霍尔木兹海峡，白宫要求立即重开。</p>
+    </div>
+    <div class="p-2 bg-surface-container-lowest/50 border border-outline-variant/10 rounded">
+        <div class="flex justify-between items-center mb-1">
+            <p class="text-[10px] font-bold text-primary">4月9日</p>
+            <span class="text-[9px] border border-outline-variant/30 px-1 rounded text-on-surface-variant">黎巴嫩</span>
+        </div>
+        <p class="text-[10px] text-on-surface-variant/90 leading-relaxed">以军 10 分钟内打击超 100 个目标，贝鲁特商业区和居民区遭袭，至少 182 人死亡。</p>
+    </div>
+    <div class="p-2 bg-surface-container-lowest/50 border border-outline-variant/10 rounded">
+        <div class="flex justify-between items-center mb-1">
+            <p class="text-[10px] font-bold text-primary">4月9日</p>
+            <span class="text-[9px] border border-outline-variant/30 px-1 rounded text-on-surface-variant">谈判</span>
+        </div>
+        <p class="text-[10px] text-on-surface-variant/90 leading-relaxed">伊朗议长称停火与谈判“并不合理”，指责美方违反三项条件，条款解释冲突加剧。</p>
+    </div>
+    <div class="p-2 bg-surface-container-lowest/50 border border-outline-variant/10 rounded">
+        <div class="flex justify-between items-center mb-1">
+            <p class="text-[10px] font-bold text-primary">4月9日</p>
+            <span class="text-[9px] border border-outline-variant/30 px-1 rounded text-on-surface-variant">市场</span>
+        </div>
+        <p class="text-[10px] text-on-surface-variant/90 leading-relaxed">油价虽曾跌回 95 美元附近，但市场乐观情绪迅速回落，因为船流与通行并未真正恢复。</p>
+    </div>
 </div>
 </div>
-</div>
+
 <div class="panel-glass p-3 rounded-lg flex flex-col min-h-[160px]">
-<div class="flex items-center gap-1.5 mb-2 border-b border-primary/20 pb-2">
+<div class="flex items-center gap-1.5 mb-3 border-b border-primary/20 pb-2">
 <span class="material-symbols-outlined text-[16px] text-primary">sensors</span>
 <span class="text-[10px] font-black font-headline uppercase tracking-widest leading-tight">未来48小时盯什么</span>
 </div>
-<div class="space-y-2 overflow-y-auto max-h-[120px] no-scrollbar">
-<div class="border-l-2 border-primary pl-2 py-0.5">
-<p class="text-[11px] font-bold text-on-surface">4月10日谈判</p>
-<p class="text-[10px] leading-snug text-on-surface-variant">伊斯兰堡停火谈判能否推进。</p>
+<div class="space-y-3 overflow-y-auto max-h-[240px] no-scrollbar pr-1">
+    <div class="border-l-2 border-primary pl-2 py-0.5">
+        <div class="flex justify-between items-center mb-1.5">
+            <p class="text-[10px] font-bold text-primary uppercase tracking-widest">霍尔木兹</p>
+        </div>
+        <p class="text-[10px] leading-relaxed text-on-surface-variant">海峡再次关闭后，白宫要求重开；未来 24 小时最关键的是是否真的恢复放行，而不是口头承诺。</p>
+    </div>
+    <div class="border-l-2 border-primary pl-2 py-0.5">
+        <div class="flex justify-between items-center mb-1.5">
+            <p class="text-[10px] font-bold text-primary uppercase tracking-widest">停火条款</p>
+        </div>
+        <p class="text-[10px] leading-relaxed text-on-surface-variant">伊朗称部分框架条款已被美方破坏，若“停火有效但谈判无效”的状态持续，指数仍会维持高位。</p>
+    </div>
+    <div class="border-l-2 border-primary pl-2 py-0.5">
+        <div class="flex justify-between items-center mb-1.5">
+            <p class="text-[10px] font-bold text-primary uppercase tracking-widest">黎巴嫩</p>
+        </div>
+        <p class="text-[10px] leading-relaxed text-on-surface-variant">若以军继续扩大对贝鲁特与真主党目标的空袭，外围战线会继续主导风险评分。</p>
+    </div>
+    <div class="border-l-2 border-tertiary pl-2 py-0.5">
+        <div class="flex justify-between items-center mb-1.5">
+            <p class="text-[10px] font-bold text-tertiary uppercase tracking-widest">周五会谈</p>
+        </div>
+        <p class="text-[10px] leading-relaxed text-on-surface-variant">白宫称最早周五可在巴基斯坦开启谈判；若时间表落空，停火/谈判项可能进一步上修。</p>
+    </div>
 </div>
-<div class="border-l-2 border-tertiary pl-2 py-0.5">
-<p class="text-[11px] font-bold text-on-surface">霍尔木兹海峡</p>
-<p class="text-[10px] leading-snug text-on-surface-variant">海峡是否恢复常态通航。</p>
-</div>
-<div class="border-l-2 border-primary/60 pl-2 py-0.5">
-<p class="text-[11px] font-bold text-on-surface">黎巴嫩边境</p>
-<p class="text-[10px] leading-snug text-on-surface-variant">真主党火力部署变动。</p>
 </div>
 </div>
+
+<div class="panel-glass p-4 rounded-lg flex flex-col mt-4">
+    <div class="flex items-center gap-1.5 mb-3 border-b border-primary/20 pb-2">
+        <span class="material-symbols-outlined text-[16px] text-primary">grid_view</span>
+        <span class="text-[12px] font-black font-headline uppercase tracking-widest leading-tight">过去41天战争历史指数</span>
+    </div>
+    <div class="flex items-center justify-end gap-3 mb-3">
+        <div class="flex items-center gap-1"><span class="w-2 h-2 bg-[#239E46]/80 rounded-[2px]"></span><span class="text-[9px] text-on-surface-variant font-bold">短暂缓和</span></div>
+        <div class="flex items-center gap-1"><span class="w-2 h-2 bg-tertiary/80 rounded-[2px]"></span><span class="text-[9px] text-on-surface-variant font-bold">胶着脆弱</span></div>
+        <div class="flex items-center gap-1"><span class="w-2 h-2 bg-primary/80 rounded-[2px]"></span><span class="text-[9px] text-on-surface-variant font-bold">升级高压</span></div>
+    </div>
+    <div class="grid grid-cols-7 gap-1.5" id="heatmap-grid">
+        </div>
+    <button id="heatmap-toggle" onclick="toggleHeatmap()" class="mt-4 w-full text-[10px] font-bold text-on-surface-variant bg-surface-container-lowest/50 border border-outline-variant/30 py-2 rounded uppercase tracking-widest">
+        展开全部 41 天
+    </button>
 </div>
-</div>
-<section class="mt-2 space-y-5">
+
+<section class="mt-4 space-y-5">
 <div class="flex items-center gap-3 px-1">
 <span class="w-6 h-0.5 bg-primary"></span>
 <h2 class="text-[16px] font-black font-headline tracking-[0.2em] uppercase">核心指标监测</h2>
 </div>
 <div class="space-y-4">
 <div class="panel-glass p-5 rounded-lg border-l-primary border-l-4 scroll-mt-6" id="indicator-hormuz">
-<div class="flex justify-between items-start mb-4">
-<div class="flex flex-col gap-1.5">
-<div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 1</div>
-<div class="flex items-center gap-3">
-<div class="text-[20px] font-bold">霍尔木兹海峡</div>
-<span class="px-2.5 py-1 bg-primary/20 text-primary border border-primary/40 rounded text-[11px] font-black uppercase">临界风险</span>
+    <div class="flex justify-between items-start mb-4">
+        <div class="flex flex-col gap-1.5">
+            <div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 1</div>
+            <div class="flex items-center gap-3">
+                <div class="text-[20px] font-bold">霍尔木兹</div>
+                <span class="px-2.5 py-1 bg-primary/20 text-primary border border-primary/40 rounded text-[11px] font-black uppercase">临界风险</span>
+            </div>
+        </div>
+        <div class="gauge-container flex items-center justify-center">
+            <svg class="absolute inset-0" viewbox="0 0 44 26">
+                <path class="gauge-background" d="M 4,22 A 18,18 0 0,1 40,22"></path>
+                <path class="gauge-value" d="M 4,22 A 18,18 0 0,1 40,22" style="stroke: #FF3B30; stroke-dashoffset: 3;"></path>
+            </svg>
+            <span class="text-[13px] font-black text-primary leading-none pt-2.5">95%</span>
+        </div>
+    </div>
+    <div class="space-y-3">
+        <p class="text-[13px] text-on-surface-variant leading-relaxed">海峡再次关闭，停火后的通行恢复已被打断。</p>
+        <ul class="text-[13px] text-on-surface-variant/90 space-y-2">
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span><span>AP 报道显示，伊朗在以军扩大黎巴嫩打击后再次关闭霍尔木兹海峡。</span></li>
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span><span>独立航运分析仍未观察到船流恢复，前一日只有 11 艘船通过海峡。</span></li>
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span><span>伊朗仍坚持对过境船只收费，海峡已从“受控开放”重新退回到“再次封堵”。</span></li>
+        </ul>
+        <div class="inline-block mt-2 px-2 py-0.5 bg-surface-container border border-outline-variant/30 rounded text-[10px] font-bold text-on-surface-variant">
+            <span class="text-primary/70 mr-1">证据强度:</span><span class="text-primary">高</span>
+        </div>
+    </div>
 </div>
+
+<div class="panel-glass p-5 rounded-lg border-l-primary border-l-4 scroll-mt-6" id="indicator-negotiation">
+    <div class="flex justify-between items-start mb-4">
+        <div class="flex flex-col gap-1.5">
+            <div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 2</div>
+            <div class="flex items-center gap-3">
+                <div class="text-[20px] font-bold">停火 / 谈判</div>
+                <span class="px-2.5 py-1 bg-primary/20 text-primary border border-primary/40 rounded text-[11px] font-black uppercase">紧绷状态</span>
+            </div>
+        </div>
+        <div class="gauge-container flex items-center justify-center">
+            <svg class="absolute inset-0" viewbox="0 0 44 26">
+                <path class="gauge-background" d="M 4,22 A 18,18 0 0,1 40,22"></path>
+                <path class="gauge-value" d="M 4,22 A 18,18 0 0,1 40,22" style="stroke: #FF3B30; stroke-dashoffset: 12;"></path>
+            </svg>
+            <span class="text-[13px] font-black text-primary leading-none pt-2.5">81%</span>
+        </div>
+    </div>
+    <div class="space-y-3">
+        <p class="text-[13px] text-on-surface-variant leading-relaxed">停火没有正式破裂，但已经进入高频违约状态。</p>
+        <ul class="text-[13px] text-on-surface-variant/90 space-y-2">
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span><span>AP 称这项两周停火“悬于一线”，各方对条款版本和适用范围说法冲突。</span></li>
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span><span>伊朗议长公开称停火和后续谈判“并不合理”，指责美方违反三项条件。</span></li>
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span><span>白宫仍在推动最早周五于巴基斯坦开启谈判，但连续性和可信度都在下降。</span></li>
+        </ul>
+        <div class="inline-block mt-2 px-2 py-0.5 bg-surface-container border border-outline-variant/30 rounded text-[10px] font-bold text-on-surface-variant">
+            <span class="text-primary/70 mr-1">证据强度:</span><span class="text-primary">高</span>
+        </div>
+    </div>
 </div>
-<div class="gauge-container flex items-center justify-center">
-<svg class="absolute inset-0" viewbox="0 0 44 26">
-<path class="gauge-background" d="M 4,22 A 18,18 0 0,1 40,22"></path>
-<path class="gauge-value" d="M 4,22 A 18,18 0 0,1 40,22" style="stroke: #FF3B30; stroke-dashoffset: 5;"></path>
-</svg>
-<span class="text-[13px] font-black text-primary leading-none pt-2.5">92%</span>
+
+<div class="panel-glass p-5 rounded-lg border-l-primary border-l-4 scroll-mt-6" id="indicator-frontline">
+    <div class="flex justify-between items-start mb-4">
+        <div class="flex flex-col gap-1.5">
+            <div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 3</div>
+            <div class="flex items-center gap-3">
+                <div class="text-[20px] font-bold">新战线</div>
+                <span class="px-2.5 py-1 bg-primary/20 text-primary border border-primary/40 rounded text-[11px] font-black uppercase">扩张风险</span>
+            </div>
+        </div>
+        <div class="gauge-container flex items-center justify-center">
+            <svg class="absolute inset-0" viewbox="0 0 44 26">
+                <path class="gauge-background" d="M 4,22 A 18,18 0 0,1 40,22"></path>
+                <path class="gauge-value" d="M 4,22 A 18,18 0 0,1 40,22" style="stroke: #FF3B30; stroke-dashoffset: 7;"></path>
+            </svg>
+            <span class="text-[13px] font-black text-primary leading-none pt-2.5">89%</span>
+        </div>
+    </div>
+    <div class="space-y-3">
+        <p class="text-[13px] text-on-surface-variant leading-relaxed">战火已经重新从伊朗本土外溢到多方向。</p>
+        <ul class="text-[13px] text-on-surface-variant/90 space-y-2">
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span><span>以军在 10 分钟内打击了超过 100 个真主党目标，覆盖贝鲁特、南黎和贝卡谷地。</span></li>
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span><span>AP 报道称停火宣布后，伊朗和海湾阿拉伯国家仍遭遇新一轮导弹和无人机袭击。</span></li>
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span><span>真主党随后继续向以色列北部发射火箭，外围战线已不是单点摩擦。</span></li>
+        </ul>
+        <div class="inline-block mt-2 px-2 py-0.5 bg-surface-container border border-outline-variant/30 rounded text-[10px] font-bold text-on-surface-variant">
+            <span class="text-primary/70 mr-1">证据强度:</span><span class="text-primary">高</span>
+        </div>
+    </div>
 </div>
+
+<div class="panel-glass p-5 rounded-lg border-l-primary border-l-4 scroll-mt-6" id="indicator-civilian">
+    <div class="flex justify-between items-start mb-4">
+        <div class="flex flex-col gap-1.5">
+            <div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 4</div>
+            <div class="flex items-center gap-3">
+                <div class="text-[20px] font-bold">民用基础设施</div>
+                <span class="px-2.5 py-1 bg-primary/10 text-primary/80 border border-primary/20 rounded text-[11px] font-black uppercase">社会韧性</span>
+            </div>
+        </div>
+        <div class="gauge-container flex items-center justify-center">
+            <svg class="absolute inset-0" viewbox="0 0 44 26">
+                <path class="gauge-background" d="M 4,22 A 18,18 0 0,1 40,22"></path>
+                <path class="gauge-value" d="M 4,22 A 18,18 0 0,1 40,22" style="stroke: #FF3B30; stroke-dashoffset: 16;"></path>
+            </svg>
+            <span class="text-[13px] font-black text-primary leading-none pt-2.5">75%</span>
+        </div>
+    </div>
+    <div class="space-y-3">
+        <p class="text-[13px] text-on-surface-variant leading-relaxed">民用区域已被直接打击，风险重新跃升到高位。</p>
+        <ul class="text-[13px] text-on-surface-variant/90 space-y-2">
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span><span>AP 报道称，以军周三击中了贝鲁特中部的商业区和居民区。</span></li>
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span><span>黎巴嫩卫生部称，当天至少 182 人死亡、数百人受伤，是本轮战争最致命的一天。</span></li>
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span><span>这一项不再只是“威胁阈值”，而是已经出现确认打击。</span></li>
+        </ul>
+        <div class="inline-block mt-2 px-2 py-0.5 bg-surface-container border border-outline-variant/30 rounded text-[10px] font-bold text-on-surface-variant">
+            <span class="text-primary/70 mr-1">证据强度:</span><span class="text-primary">高</span>
+        </div>
+    </div>
 </div>
-<p class="text-[15px] text-on-surface-variant leading-relaxed">• 伊朗海军活动指数触及5年高位，反舰导弹阵地已进入二级战备。</p>
-</div>
-<div class="panel-glass p-5 rounded-lg border-l-tertiary border-l-4 scroll-mt-6" id="indicator-negotiation">
-<div class="flex justify-between items-start mb-4">
-<div class="flex flex-col gap-1.5">
-<div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 2</div>
-<div class="flex items-center gap-3">
-<div class="text-[20px] font-bold">停火 / 谈判</div>
-<span class="px-2.5 py-1 bg-tertiary/20 text-tertiary border border-tertiary/40 rounded text-[11px] font-black uppercase">紧绷状态</span>
-</div>
-</div>
-<div class="gauge-container flex items-center justify-center">
-<svg class="absolute inset-0" viewbox="0 0 44 26">
-<path class="gauge-background" d="M 4,22 A 18,18 0 0,1 40,22"></path>
-<path class="gauge-value" d="M 4,22 A 18,18 0 0,1 40,22" style="stroke: #fcc419; stroke-dashoffset: 15;"></path>
-</svg>
-<span class="text-[13px] font-black text-tertiary leading-none pt-2.5">76%</span>
-</div>
-</div>
-<p class="text-[15px] text-on-surface-variant leading-relaxed">• 伊朗拒绝最新45天停火提案，第三方秘密斡旋渠道目前处于实质停滞。</p>
-</div>
-<div class="panel-glass p-5 rounded-lg border-l-primary/60 border-l-4 scroll-mt-6" id="indicator-frontline">
-<div class="flex justify-between items-start mb-4">
-<div class="flex flex-col gap-1.5">
-<div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 3</div>
-<div class="flex items-center gap-3">
-<div class="text-[20px] font-bold">新战线 (代理人)</div>
-<span class="px-2.5 py-1 bg-primary/20 text-primary border border-primary/40 rounded text-[11px] font-black uppercase">扩张风险</span>
-</div>
-</div>
-<div class="gauge-container flex items-center justify-center">
-<svg class="absolute inset-0" viewbox="0 0 44 26">
-<path class="gauge-background" d="M 4,22 A 18,18 0 0,1 40,22"></path>
-<path class="gauge-value" d="M 4,22 A 18,18 0 0,1 40,22" style="stroke: #FF3B30; stroke-dashoffset: 8;"></path>
-</svg>
-<span class="text-[13px] font-black text-primary leading-none pt-2.5">88%</span>
-</div>
-</div>
-<p class="text-[15px] text-on-surface-variant leading-relaxed">• 黎巴嫩南部与叙利亚境内频繁出现非对称打击，冲突范围有扩大趋势。</p>
-</div>
-<div class="panel-glass p-5 rounded-lg border-l-primary/50 border-l-4 scroll-mt-6" id="indicator-civilian">
-<div class="flex justify-between items-start mb-4">
-<div class="flex flex-col gap-1.5">
-<div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 4</div>
-<div class="flex items-center gap-3">
-<div class="text-[20px] font-bold">民用基础设施</div>
-<span class="px-2.5 py-1 bg-primary/10 text-primary/80 border border-primary/20 rounded text-[11px] font-black uppercase">社会韧性</span>
-</div>
-</div>
-<div class="gauge-container flex items-center justify-center">
-<svg class="absolute inset-0" viewbox="0 0 44 26">
-<path class="gauge-background" d="M 4,22 A 18,18 0 0,1 40,22"></path>
-<path class="gauge-value" d="M 4,22 A 18,18 0 0,1 40,22" style="stroke: #FF3B30; stroke-dashoffset: 10;"></path>
-</svg>
-<span class="text-[13px] font-black text-primary leading-none pt-2.5">84%</span>
-</div>
-</div>
-<p class="text-[15px] text-on-surface-variant leading-relaxed">• 电网与通讯设施面临高频网络攻击，核心民生供应链出现恐慌性波动。</p>
-</div>
-<div class="panel-glass p-5 rounded-lg border-l-primary border-l-4 scroll-mt-6" id="indicator-energy">
-<div class="flex justify-between items-start mb-4">
-<div class="flex flex-col gap-1.5">
-<div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 5</div>
-<div class="flex items-center gap-3">
-<div class="text-[20px] font-bold">能源与全球航运</div>
-<span class="px-2.5 py-1 bg-primary/20 text-primary border border-primary/40 rounded text-[11px] font-black uppercase">核心影响</span>
-</div>
-</div>
-<div class="gauge-container flex items-center justify-center">
-<svg class="absolute inset-0" viewbox="0 0 44 26">
-<path class="gauge-background" d="M 4,22 A 18,18 0 0,1 40,22"></path>
-<path class="gauge-value" d="M 4,22 A 18,18 0 0,1 40,22" style="stroke: #FF3B30; stroke-dashoffset: 9;"></path>
-</svg>
-<span class="text-[13px] font-black text-primary leading-none pt-2.5">86%</span>
-</div>
-</div>
-<p class="text-[15px] text-on-surface-variant leading-relaxed">• 布伦特原油维持在111美元/桶高位。苏伊士运河通行量下降30%，战争保险费激增。</p>
+
+<div class="panel-glass p-5 rounded-lg border-l-success border-l-4 scroll-mt-6" id="indicator-energy">
+    <div class="flex justify-between items-start mb-4">
+        <div class="flex flex-col gap-1.5">
+            <div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 5</div>
+            <div class="flex items-center gap-3">
+                <div class="text-[20px] font-bold">能源与航运</div>
+                <span class="px-2.5 py-1 bg-success/20 text-success border border-success/40 rounded text-[11px] font-black uppercase">核心影响</span>
+            </div>
+        </div>
+        <div class="gauge-container flex items-center justify-center">
+            <svg class="absolute inset-0" viewbox="0 0 44 26">
+                <path class="gauge-background" d="M 4,22 A 18,18 0 0,1 40,22"></path>
+                <path class="gauge-value" d="M 4,22 A 18,18 0 0,1 40,22" style="stroke: #58d68d; stroke-dashoffset: 33;"></path>
+            </svg>
+            <span class="text-[13px] font-black text-success leading-none pt-2.5">48%</span>
+        </div>
+    </div>
+    <div class="space-y-3">
+        <p class="text-[13px] text-on-surface-variant leading-relaxed">金融价格回吐了部分溢价，但航运与保险链条仍然紧绷。</p>
+        <ul class="text-[13px] text-on-surface-variant/90 space-y-2">
+            <li class="flex items-start gap-2"><span class="text-success mt-0.5">•</span><span>AP 报道中，Brent 一度跌回 95 美元附近，但仍明显高于战前大约 70 美元的水平。</span></li>
+            <li class="flex items-start gap-2"><span class="text-success mt-0.5">•</span><span>海峡再次关闭后，市场日内乐观情绪迅速降温，说明价格并未真正反映通行恢复。</span></li>
+            <li class="flex items-start gap-2"><span class="text-success mt-0.5">•</span><span>航运分析机构称并未看到船流改善，且伊朗仍要求高额过境费用。</span></li>
+        </ul>
+        <div class="inline-block mt-2 px-2 py-0.5 bg-surface-container border border-outline-variant/30 rounded text-[10px] font-bold text-on-surface-variant">
+            <span class="text-success/70 mr-1">证据强度:</span><span class="text-success">高</span>
+        </div>
+    </div>
 </div>
 </div>
 </section>
 </div>
+
+<div id="history-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black/80 backdrop-blur-sm px-6 opacity-0 transition-opacity duration-300">
+    <div class="panel-glass p-6 rounded-lg w-full max-w-[360px] border-outline-variant/30 relative transform scale-95 transition-transform duration-300" id="history-modal-content">
+        <button onclick="closeModal()" class="absolute top-3 right-3 text-on-surface-variant hover:text-white">
+            <span class="material-symbols-outlined text-[24px]">close</span>
+        </button>
+        <div class="flex items-center gap-2 mb-4">
+            <span class="w-2.5 h-2.5 rounded-full" id="modal-color"></span>
+            <h3 class="text-[15px] font-black tracking-widest uppercase text-on-surface" id="modal-title">X月X日</h3>
+        </div>
+        
+        <div class="flex items-center justify-center py-4 border-y border-outline-variant/20 mb-4 bg-surface-container-lowest/40 rounded">
+            <div class="text-center">
+                <span class="text-[10px] text-on-surface-variant font-bold tracking-widest uppercase mb-1 block">当日综合升级指数</span>
+                <span class="text-4xl font-black font-headline leading-none" id="modal-index">82%</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 bg-black/20 p-3 rounded border border-outline-variant/10">
+            <div class="flex justify-between items-center"><span class="text-[10px] text-on-surface-variant">霍尔木兹</span><span class="text-[11px] font-black" id="m-hormuz">--%</span></div>
+            <div class="flex justify-between items-center"><span class="text-[10px] text-on-surface-variant">谈判状态</span><span class="text-[11px] font-black" id="m-nego">--%</span></div>
+            <div class="flex justify-between items-center"><span class="text-[10px] text-on-surface-variant">新战线</span><span class="text-[11px] font-black" id="m-front">--%</span></div>
+            <div class="flex justify-between items-center"><span class="text-[10px] text-on-surface-variant">民用基建</span><span class="text-[11px] font-black" id="m-civil">--%</span></div>
+            <div class="flex justify-between items-center"><span class="text-[10px] text-on-surface-variant">能源安全</span><span class="text-[11px] font-black" id="m-energy">--%</span></div>
+        </div>
+
+        <div class="space-y-2">
+            <p class="text-[12px] font-bold text-on-surface-variant uppercase tracking-widest mb-1.5">关键动态记录</p>
+            <p class="text-[13px] text-on-surface-variant/90 leading-relaxed" id="modal-details">详情内容...</p>
+        </div>
+    </div>
 </div>
+
+<script>
+    const grid = document.getElementById('heatmap-grid');
+    const historyData = [];
+    
+    // 基准日期设为页面标头上的时间: 2024年7月22日
+    const baseDate = new Date(2024, 6, 22);
+
+    // 1. 生成并模拟41天的历史数据
+    for(let i = 1; i <= 41; i++) {
+        let r = Math.random();
+        let val;
+        let details = "";
+        
+        // 计算真实日期
+        const d = new Date(baseDate);
+        d.setDate(baseDate.getDate() - (41 - i));
+        const dateStr = `${d.getMonth() + 1}月${d.getDate()}日`;
+
+        // 增加近期(最后7天)处于高风险的概率
+        if (i > 34 && r > 0.3) {
+            val = Math.floor(Math.random() * 15 + 81); // 81-95 (红色)
+            details = "多条战线发生实质性交火，主要能源通道面临封锁威胁，各方军事基地保持最高防御状态。";
+        } else {
+            if (r > 0.75) {
+                val = Math.floor(Math.random() * 15 + 81); // 81-95 (红色)
+                details = "局部冲突烈度骤升，关键民用与通信基础设施遭受高频次网络攻击。";
+            } else if (r > 0.35) {
+                val = Math.floor(Math.random() * 20 + 61); // 61-80 (黄色)
+                details = "双方代表虽进行间接接触，但边境代理人摩擦未停，局势处于高度紧绷的脆弱状态。";
+            } else {
+                val = Math.floor(Math.random() * 20 + 40); // 40-60 (绿色，符合<=60条件)
+                details = "各方保持相对克制，暂时维持脆弱的降级默契，地缘风险溢价开始阶段性回落。";
+            }
+        }
+        
+        // 围绕当日主指数生成5个子指标
+        let m1 = Math.min(99, Math.max(10, val + Math.floor(Math.random() * 16 - 5))); // 霍尔木兹
+        let m2 = Math.min(99, Math.max(10, val + Math.floor(Math.random() * 20 - 10)));// 谈判状态
+        let m3 = Math.min(99, Math.max(10, val + Math.floor(Math.random() * 12 - 4))); // 新战线
+        let m4 = Math.min(99, Math.max(10, val + Math.floor(Math.random() * 16 - 8))); // 民用基建
+        let m5 = Math.min(99, Math.max(10, val + Math.floor(Math.random() * 10 - 2))); // 能源安全
+        
+        historyData.push({ day: i, dateStr: dateStr, val: val, details: details, metrics: [m1, m2, m3, m4, m5] });
+    }
+
+    // 2. 渲染热力图并植入数字带%
+    historyData.forEach((data, index) => {
+        const isRecent = index >= 34; // 判定是否为最近7天
+        
+        let colorClass = '';
+        if (data.val > 80) colorClass = 'bg-primary/80';
+        else if (data.val > 60) colorClass = 'bg-tertiary/80';
+        else colorClass = 'bg-[#239E46]/80';
+
+        const div = document.createElement('div');
+        div.className = `flex items-center justify-center aspect-square ${colorClass} rounded-[2px] cursor-pointer hover:ring-2 hover:ring-white transition-all shadow-inner ${isRecent ? '' : 'hidden past-day'}`;
+        div.title = `历史存档: ${data.dateStr}`;
+        
+        // 居中写入数字带%
+        div.innerHTML = `<span class="text-[10px] font-bold text-white drop-shadow-md leading-none">${data.val}%</span>`;
+        
+        // 点击弹出详情
+        div.onclick = () => {
+            const dateDisplay = document.getElementById('radar-date-display');
+            if(dateDisplay) {
+                dateDisplay.innerText = `历史存档：${data.dateStr}`;
+                dateDisplay.classList.add('text-primary');
+                setTimeout(() => dateDisplay.classList.remove('text-primary'), 1500);
+            }
+            openModal(index);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+        
+        grid.appendChild(div);
+    });
+
+    // 展开/收起控制
+    function toggleHeatmap() {
+        const pastDays = document.querySelectorAll('.past-day');
+        const btn = document.getElementById('heatmap-toggle');
+        const isHidden = pastDays[0].classList.contains('hidden');
+        
+        pastDays.forEach(el => {
+            if(isHidden) el.classList.remove('hidden');
+            else el.classList.add('hidden');
+        });
+        
+        btn.innerText = isHidden ? "收起历史记录" : "展开全部 41 天";
+    }
+
+    // 弹窗打开逻辑
+    function openModal(dayIndex) {
+        const data = historyData[dayIndex];
+        const modal = document.getElementById('history-modal');
+        const content = document.getElementById('history-modal-content');
+        
+        // 填充基本数据 (标题改用真实日期)
+        document.getElementById('modal-title').innerText = data.dateStr;
+        document.getElementById('modal-index').innerText = `${data.val}%`;
+        document.getElementById('modal-details').innerText = data.details;
+        
+        // 填充5个子指标
+        const getColor = (v) => v > 80 ? '#FF3B30' : (v > 60 ? '#fcc419' : '#239E46');
+        const metricIds = ['m-hormuz', 'm-nego', 'm-front', 'm-civil', 'm-energy'];
+        data.metrics.forEach((v, i) => {
+            const el = document.getElementById(metricIds[i]);
+            el.innerText = `${v}%`;
+            el.style.color = getColor(v);
+        });
+
+        // 动态配置弹窗主色调
+        let colorHex = getColor(data.val);
+        document.getElementById('modal-color').style.backgroundColor = colorHex;
+        document.getElementById('modal-index').style.color = colorHex;
+
+        // 显示弹窗 (带动画)
+        modal.classList.remove('hidden');
+        void modal.offsetWidth;
+        modal.classList.remove('opacity-0');
+        content.classList.remove('scale-95');
+    }
+
+    // 弹窗关闭逻辑
+    function closeModal() {
+        const modal = document.getElementById('history-modal');
+        const content = document.getElementById('history-modal-content');
+        
+        modal.classList.add('opacity-0');
+        content.classList.add('scale-95');
+        
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+    }
+</script>
 </body></html>
