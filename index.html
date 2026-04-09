@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html class="dark" lang="zh-CN"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -37,6 +36,7 @@
         }
     </script>
 <style>
+        html { scroll-behavior: smooth; }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
             vertical-align: middle;
@@ -46,7 +46,7 @@
             background-size: 20px 20px;
         }
         .radar-sweep {
-            background: conic-gradient(from 0deg at 50% 50%, rgba(255, 59, 48, 0.25) 0deg, transparent 90deg);
+            background: conic-gradient(from 0deg at 50% 50%, rgba(255, 59, 48, 0.15) 0deg, transparent 90deg);
             animation: rotate 8s linear infinite;
         }
         @keyframes rotate {
@@ -60,7 +60,8 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
         .radar-grid-line { stroke: rgba(255, 59, 48, 0.2); stroke-width: 1; }
-        .radar-text { fill: rgba(240, 246, 252, 0.4); font-family: 'Space Grotesk'; font-size: 10px; }
+        /* 放大雷达坐标数字 */
+        .radar-text { fill: rgba(240, 246, 252, 0.3); font-family: 'Space Grotesk'; font-size: 8px; }
         
         @keyframes breathing {
             0%, 100% { opacity: 1; text-shadow: 0 0 10px rgba(255, 59, 48, 0.5); }
@@ -92,41 +93,66 @@
             overflow: hidden;
             z-index: 0;
             mask-image: linear-gradient(to bottom, black 40%, transparent);
-            opacity: 0.25;
+            opacity: 0.15;
+        }
+
+        .us-flag {
+            background: linear-gradient(to bottom, #B22234 7.69%, #FFFFFF 7.69%, #FFFFFF 15.38%, #B22234 15.38%, #B22234 23.07%, #FFFFFF 23.07%, #FFFFFF 30.76%, #B22234 30.76%, #B22234 38.45%, #FFFFFF 38.45%, #FFFFFF 46.14%, #B22234 46.14%, #B22234 53.83%, #FFFFFF 53.83%, #FFFFFF 61.52%, #B22234 61.52%, #B22234 69.21%, #FFFFFF 69.21%, #FFFFFF 76.9%, #B22234 76.9%, #B22234 84.59%, #FFFFFF 84.59%, #FFFFFF 92.28%, #B22234 92.28%);
+            position: relative;
+        }
+        .us-flag-stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40%;
+            height: 53.83%;
+            background-color: #3C3B6E;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            padding: 2px;
+            gap: 1px;
+        }
+        .star { background-color: white; border-radius: 50%; width: 2px; height: 2px; }
+
+        .iran-flag {
+            display: flex;
+            flex-direction: column;
+        }
+        .iran-green { height: 33.33%; background: #239E46; }
+        .iran-white { height: 33.33%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; }
+        .iran-red { height: 33.33%; background: #DA291C; }
+        .iran-emblem { width: 14px; height: 14px; background-color: #DA291C; mask-image: radial-gradient(circle at 50% 50%, transparent 40%, black 41%); -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 40%, black 41%); border-radius: 50%; }
+
+        .radar-tag {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.85);
+            border-radius: 2px;
+            padding: 2px 6px;
+            backdrop-filter: blur(4px);
+        }
+        .radar-tag span {
+            display: block;
+            line-height: 1;
         }
     </style>
 </head>
 <body class="bg-[#0D1117] text-on-surface font-body selection:bg-primary/30 antialiased overflow-x-hidden min-h-screen flex justify-center text-[18px]">
-<!-- Mobile Container (450px Max) -->
-<div class="w-full max-w-[450px] bg-surface min-h-screen grid-texture pb-12 px-6 relative shadow-2xl shadow-black/80 border-x border-outline-variant/20">
-<!-- Enhanced Header Flag Background -->
-<div class="flag-bg-container flex justify-between px-0 pt-0">
-<!-- US Flag Detail - Enhanced Visibility -->
-<div class="w-56 h-32 flex flex-col gap-1.5 -rotate-12 transform -translate-x-12 -translate-y-4">
-<div class="w-24 h-16 bg-blue-700/80 relative overflow-hidden flex flex-wrap p-1 gap-1">
-<div class="w-1 h-1 bg-white rounded-full"></div><div class="w-1 h-1 bg-white rounded-full"></div><div class="w-1 h-1 bg-white rounded-full"></div><div class="w-1 h-1 bg-white rounded-full"></div>
-<div class="w-1 h-1 bg-white rounded-full"></div><div class="w-1 h-1 bg-white rounded-full"></div><div class="w-1 h-1 bg-white rounded-full"></div><div class="w-1 h-1 bg-white rounded-full"></div>
-<div class="w-1 h-1 bg-white rounded-full"></div><div class="w-1 h-1 bg-white rounded-full"></div><div class="w-1 h-1 bg-white rounded-full"></div><div class="w-1 h-1 bg-white rounded-full"></div>
-</div>
-<div class="w-full h-2 bg-primary/80"></div>
-<div class="w-full h-2 bg-white/40"></div>
-<div class="w-full h-2 bg-primary/80"></div>
-<div class="w-full h-2 bg-white/40"></div>
-<div class="w-full h-2 bg-primary/80"></div>
-</div>
-<!-- Iran Flag Detail - Enhanced Visibility -->
-<div class="w-56 h-32 flex flex-col gap-0 rotate-12 transform translate-x-12 -translate-y-4">
-<div class="w-full h-1/3 bg-green-600/80"></div>
-<div class="w-full h-1/3 bg-white/60 flex items-center justify-center relative">
-<div class="w-10 h-10 border-2 border-red-600/60 rounded-full flex items-center justify-center">
-<div class="w-1.5 h-5 bg-red-600/60 rotate-45 absolute"></div>
-<div class="w-1.5 h-5 bg-red-600/60 -rotate-45 absolute"></div>
+<div class="w-full max-w-[450px] min-w-[320px] bg-surface min-h-screen grid-texture pb-12 px-6 relative shadow-2xl shadow-black/80 border-x border-outline-variant/20 overflow-x-hidden">
+<div class="flag-bg-container flex justify-between">
+<div class="w-48 h-28 us-flag -rotate-12 transform -translate-x-10 -translate-y-4 opacity-40">
+<div class="us-flag-stars">
+<div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+<div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
 </div>
 </div>
-<div class="w-full h-1/3 bg-red-600/80"></div>
+<div class="w-48 h-28 iran-flag rotate-12 transform translate-x-10 -translate-y-4 opacity-40">
+<div class="iran-green"></div>
+<div class="iran-white"><div class="iran-emblem"></div></div>
+<div class="iran-red"></div>
 </div>
 </div>
-<!-- Top Bar: Status & Title -->
 <header class="py-6 flex flex-col gap-3 relative z-10">
 <div class="flex justify-between items-center px-1">
 <div class="flex items-center gap-2">
@@ -144,105 +170,103 @@
 </div>
 </header>
 <div class="flex flex-col gap-6 mt-2 relative z-10">
-<!-- Main Radar Visualization -->
-<div class="panel-glass rounded-lg relative aspect-square overflow-hidden border-primary/20 bg-black/40">
+<div class="panel-glass rounded-lg relative aspect-square overflow-hidden border-primary/20 bg-black/40 flex items-center justify-center">
 <div class="absolute inset-0 radar-sweep rounded-full opacity-50"></div>
-<svg class="absolute inset-0 w-full h-full p-8" viewbox="0 0 200 200">
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 200 200">
 <circle class="radar-grid-line" cx="100" cy="100" fill="none" r="80"></circle>
 <circle class="radar-grid-line" cx="100" cy="100" fill="none" r="60"></circle>
 <circle class="radar-grid-line" cx="100" cy="100" fill="none" r="40"></circle>
 <circle class="radar-grid-line" cx="100" cy="100" fill="none" r="20"></circle>
 <line class="radar-grid-line" x1="100" x2="100" y1="20" y2="180"></line>
 <line class="radar-grid-line" x1="20" x2="180" y1="100" y2="100"></line>
-<text class="radar-text" x="95" y="16">100</text>
+<text class="radar-text" x="102" y="18">100</text>
+<text class="radar-text" x="102" y="106">0</text>
 </svg>
-<!-- Radar Blips Calibration -->
-<!-- 霍尔木兹 92% -->
-<div class="absolute flex flex-col items-center" style="top: 36%; right: 9%;">
-<div class="relative">
-<div class="w-3.5 h-3.5 bg-primary rounded-full animate-ping absolute inset-0"></div>
-<div class="w-3.5 h-3.5 bg-primary rounded-full shadow-[0_0_12px_rgba(255,59,48,1)]"></div>
-</div>
-<div class="bg-black/90 border border-primary/40 px-2 py-0.5 rounded mt-1.5"><span class="text-[11px] font-bold text-[#ff4d42] uppercase">霍尔木兹 92%</span></div>
-</div>
-<!-- 新战线 88% -->
-<div class="absolute flex flex-col items-center" style="top: 83%; left: 45%;">
-<div class="w-2.5 h-2.5 bg-primary/80 rounded-full shadow-[0_0_8px_rgba(255,59,48,0.6)]"></div>
-<div class="bg-black/90 border border-primary/20 px-2 py-0.5 rounded mt-1.5"><span class="text-[11px] font-bold text-[#ff4d42]/90 uppercase">新战线 88%</span></div>
-</div>
-<!-- 能源安全 86% -->
-<div class="absolute flex flex-col items-center" style="top: 72%; left: 15%;">
-<div class="w-2.5 h-2.5 bg-primary rounded-full shadow-[0_0_10px_rgba(255,59,48,0.8)]"></div>
-<div class="bg-black/90 border border-primary/40 px-2 py-0.5 rounded mt-1.5"><span class="text-[11px] font-bold text-[#ff4d42] uppercase">能源安全 86%</span></div>
-</div>
-<!-- 民用设施 84% -->
-<div class="absolute flex flex-col items-center" style="top: 54%; right: 18%;">
-<div class="w-2.5 h-2.5 bg-primary/70 rounded-full"></div>
-<div class="bg-black/90 border border-primary/20 px-2 py-0.5 rounded mt-1.5"><span class="text-[11px] font-bold text-[#ff4d42]/90 uppercase">民用设施 84%</span></div>
-</div>
-<!-- 谈判状态 76% -->
-<div class="absolute flex flex-col items-center" style="top: 22%; right: 34%;">
-<div class="w-2.5 h-2.5 bg-tertiary rounded-full shadow-[0_0_10px_rgba(252,196,25,0.8)]"></div>
-<div class="bg-black/90 border border-tertiary/40 px-2 py-0.5 rounded mt-1.5"><span class="text-[11px] font-bold text-tertiary uppercase">谈判状态 76%</span></div>
-</div>
-<!-- Center Display -->
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center bg-surface-container/90 rounded-full w-24 h-24 items-center justify-center border border-primary/50 shadow-2xl">
-<div class="flex flex-col items-center justify-center">
-<span class="text-[12px] text-primary font-bold tracking-tight uppercase mb-0.5">升级指数</span>
-<span class="text-3xl font-black font-headline text-white leading-none">82%</span>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 flex flex-col items-center bg-surface-container/95 rounded-full w-20 h-20 items-center justify-center border border-primary/30 shadow-2xl">
+<div class="flex flex-col items-center justify-center text-center">
+<span class="text-[11px] text-primary font-bold tracking-tight uppercase mb-0.5">升级指数</span>
+<span class="text-xl font-black font-headline text-white leading-none">82%</span>
 </div>
 </div>
+<a class="absolute flex justify-center items-center" href="#indicator-negotiation" style="top: 23.7%; left: 34.8%; z-index: 30; width: 0; height: 0;">
+<div class="absolute bottom-3 radar-tag border border-tertiary/40 shadow-lg transform -translate-x-1/2">
+<span class="text-[11px] font-bold text-tertiary uppercase whitespace-nowrap">停火/谈判 76%</span>
 </div>
-<!-- 48H Timeframes -->
-<div class="grid grid-cols-2 gap-5">
-<!-- Past 48H Panel -->
-<div class="panel-glass p-4 rounded-lg flex flex-col">
-<div class="flex items-center gap-2 mb-4 border-b border-white/5 pb-2">
-<span class="material-symbols-outlined text-[20px] text-on-surface-variant">history</span>
-<span class="text-[12px] font-black font-headline uppercase tracking-widest">过去48小时的关键转折</span>
+<div class="absolute w-2.5 h-2.5 bg-tertiary rounded-full shadow-[0_0_10px_rgba(252,196,25,0.8)]"></div>
+</a>
+
+<a class="absolute flex justify-center items-center" href="#indicator-hormuz" style="top: 31.6%; left: 81.9%; z-index: 30; width: 0; height: 0;">
+<div class="absolute bottom-3 radar-tag border border-primary/40 shadow-lg transform translate-x-1/4">
+<span class="text-[11px] font-bold text-primary uppercase whitespace-nowrap">霍尔木兹 92%</span>
 </div>
-<div class="flex-1 space-y-3">
-<div class="p-3 bg-surface-container-lowest/50 border border-outline-variant/10 rounded">
-<p class="text-[12px] font-bold text-primary mb-1.5">北京时间4月8日 / 设拉子</p>
-<p class="text-[14px] text-on-surface-variant/90 leading-normal">发现异常无人机群活动，基地进入最高防御状态，局部防空火力网激活。</p>
+<div class="absolute w-2.5 h-2.5">
+<div class="w-2.5 h-2.5 bg-primary rounded-full animate-ping absolute inset-0"></div>
+<div class="w-2.5 h-2.5 bg-primary rounded-full shadow-[0_0_12px_rgba(255,59,48,1)]"></div>
 </div>
+</a>
+
+<a class="absolute flex justify-center items-center" href="#indicator-civilian" style="top: 66.8%; left: 79.1%; z-index: 30; width: 0; height: 0;">
+<div class="absolute top-3 radar-tag border border-primary/20 shadow-lg transform translate-x-1/4">
+<span class="text-[11px] font-bold text-primary/90 uppercase whitespace-nowrap">民用设施 84%</span>
 </div>
+<div class="absolute w-2.5 h-2.5 bg-primary/70 rounded-full shadow-[0_0_8px_rgba(255,59,48,0.5)]"></div>
+</a>
+
+<a class="absolute flex justify-center items-center" href="#indicator-frontline" style="top: 80.5%; left: 32.4%; z-index: 30; width: 0; height: 0;">
+<div class="absolute top-3 radar-tag border border-primary/30 shadow-lg transform -translate-x-1/4">
+<span class="text-[11px] font-bold text-primary/90 uppercase whitespace-nowrap">新战线 88%</span>
 </div>
-<!-- Future 48H Panel -->
-<div class="panel-glass p-4 rounded-lg flex flex-col">
-<div class="flex items-center gap-2 mb-4 border-b border-primary/20 pb-2">
-<span class="material-symbols-outlined text-[20px] text-primary">sensors</span>
-<span class="text-[12px] font-black font-headline uppercase tracking-widest">未来48小时盯什么</span>
+<div class="absolute w-2.5 h-2.5 bg-primary/80 rounded-full shadow-[0_0_10px_rgba(255,59,48,0.6)]"></div>
+</a>
+
+<a class="absolute flex justify-center items-center" href="#indicator-energy" style="top: 50%; left: 15.6%; z-index: 30; width: 0; height: 0;">
+<div class="absolute left-3 radar-tag border border-primary/40 shadow-lg">
+<span class="text-[11px] font-bold text-primary uppercase whitespace-nowrap">能源安全 86%</span>
 </div>
-<div class="space-y-4 overflow-y-auto max-h-[180px] no-scrollbar">
-<div class="border-l-3 border-primary pl-3 py-0.5">
-<p class="text-[14px] font-bold text-on-surface mb-1">4月10日谈判</p>
-<p class="text-[12px] leading-snug text-on-surface-variant">伊斯兰堡停火谈判能否推进为长期框架。</p>
+<div class="absolute w-2.5 h-2.5 bg-primary rounded-full shadow-[0_0_10px_rgba(255,59,48,0.8)]"></div>
+</a>
 </div>
-<div class="border-l-3 border-tertiary pl-3 py-0.5">
-<p class="text-[14px] font-bold text-on-surface mb-1">霍尔木兹海峡</p>
-<p class="text-[12px] leading-snug text-on-surface-variant">海峡是否真正恢复常态通航。</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="panel-glass p-3 rounded-lg flex flex-col min-h-[160px]">
+<div class="flex items-center gap-1.5 mb-2 border-b border-white/5 pb-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">history</span>
+<span class="text-[10px] font-black font-headline uppercase tracking-widest leading-tight">过去48小时关键转折</span>
 </div>
-<div class="border-l-3 border-primary/60 pl-3 py-0.5">
-<p class="text-[14px] font-bold text-on-surface mb-1">黎巴嫩边境</p>
-<p class="text-[12px] leading-snug text-on-surface-variant">真主党重火力部署变动。</p>
-</div>
-<div class="border-l-3 border-tertiary/60 pl-3 py-0.5">
-<p class="text-[14px] font-bold text-on-surface mb-1">市场验证</p>
-<p class="text-[12px] leading-snug text-on-surface-variant">原油期权波动率回落情况。</p>
+<div class="flex-1 space-y-2">
+<div class="p-2 bg-surface-container-lowest/50 border border-outline-variant/10 rounded h-full">
+<p class="text-[9px] font-bold text-primary mb-1">北京时间4月8日 / 设拉子</p>
+<p class="text-[11px] text-on-surface-variant/90 leading-normal">发现异常无人机群活动，基地进入最高防御状态，局部防空火力网激活。</p>
 </div>
 </div>
 </div>
+<div class="panel-glass p-3 rounded-lg flex flex-col min-h-[160px]">
+<div class="flex items-center gap-1.5 mb-2 border-b border-primary/20 pb-2">
+<span class="material-symbols-outlined text-[16px] text-primary">sensors</span>
+<span class="text-[10px] font-black font-headline uppercase tracking-widest leading-tight">未来48小时盯什么</span>
 </div>
-<!-- Indicator Detail Section -->
+<div class="space-y-2 overflow-y-auto max-h-[120px] no-scrollbar">
+<div class="border-l-2 border-primary pl-2 py-0.5">
+<p class="text-[11px] font-bold text-on-surface">4月10日谈判</p>
+<p class="text-[10px] leading-snug text-on-surface-variant">伊斯兰堡停火谈判能否推进。</p>
+</div>
+<div class="border-l-2 border-tertiary pl-2 py-0.5">
+<p class="text-[11px] font-bold text-on-surface">霍尔木兹海峡</p>
+<p class="text-[10px] leading-snug text-on-surface-variant">海峡是否恢复常态通航。</p>
+</div>
+<div class="border-l-2 border-primary/60 pl-2 py-0.5">
+<p class="text-[11px] font-bold text-on-surface">黎巴嫩边境</p>
+<p class="text-[10px] leading-snug text-on-surface-variant">真主党火力部署变动。</p>
+</div>
+</div>
+</div>
+</div>
 <section class="mt-2 space-y-5">
 <div class="flex items-center gap-3 px-1">
 <span class="w-6 h-0.5 bg-primary"></span>
 <h2 class="text-[16px] font-black font-headline tracking-[0.2em] uppercase">核心指标监测</h2>
 </div>
 <div class="space-y-4">
-<!-- Indicator 1 -->
-<div class="panel-glass p-5 rounded-lg border-l-primary border-l-4">
+<div class="panel-glass p-5 rounded-lg border-l-primary border-l-4 scroll-mt-6" id="indicator-hormuz">
 <div class="flex justify-between items-start mb-4">
 <div class="flex flex-col gap-1.5">
 <div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 1</div>
@@ -261,8 +285,7 @@
 </div>
 <p class="text-[15px] text-on-surface-variant leading-relaxed">• 伊朗海军活动指数触及5年高位，反舰导弹阵地已进入二级战备。</p>
 </div>
-<!-- Indicator 2 -->
-<div class="panel-glass p-5 rounded-lg border-l-tertiary border-l-4">
+<div class="panel-glass p-5 rounded-lg border-l-tertiary border-l-4 scroll-mt-6" id="indicator-negotiation">
 <div class="flex justify-between items-start mb-4">
 <div class="flex flex-col gap-1.5">
 <div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 2</div>
@@ -281,8 +304,7 @@
 </div>
 <p class="text-[15px] text-on-surface-variant leading-relaxed">• 伊朗拒绝最新45天停火提案，第三方秘密斡旋渠道目前处于实质停滞。</p>
 </div>
-<!-- Indicator 3 -->
-<div class="panel-glass p-5 rounded-lg border-l-primary/60 border-l-4">
+<div class="panel-glass p-5 rounded-lg border-l-primary/60 border-l-4 scroll-mt-6" id="indicator-frontline">
 <div class="flex justify-between items-start mb-4">
 <div class="flex flex-col gap-1.5">
 <div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 3</div>
@@ -301,8 +323,7 @@
 </div>
 <p class="text-[15px] text-on-surface-variant leading-relaxed">• 黎巴嫩南部与叙利亚境内频繁出现非对称打击，冲突范围有扩大趋势。</p>
 </div>
-<!-- Indicator 4 -->
-<div class="panel-glass p-5 rounded-lg border-l-primary/50 border-l-4">
+<div class="panel-glass p-5 rounded-lg border-l-primary/50 border-l-4 scroll-mt-6" id="indicator-civilian">
 <div class="flex justify-between items-start mb-4">
 <div class="flex flex-col gap-1.5">
 <div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 4</div>
@@ -321,8 +342,7 @@
 </div>
 <p class="text-[15px] text-on-surface-variant leading-relaxed">• 电网与通讯设施面临高频网络攻击，核心民生供应链出现恐慌性波动。</p>
 </div>
-<!-- Indicator 5 -->
-<div class="panel-glass p-5 rounded-lg border-l-primary border-l-4">
+<div class="panel-glass p-5 rounded-lg border-l-primary border-l-4 scroll-mt-6" id="indicator-energy">
 <div class="flex justify-between items-start mb-4">
 <div class="flex flex-col gap-1.5">
 <div class="text-[11px] font-mono opacity-60 uppercase tracking-widest">指标 5</div>
@@ -344,13 +364,5 @@
 </div>
 </section>
 </div>
-<!-- Footer Decor -->
-<footer class="mt-12 pb-8 opacity-40 px-1 border-t border-outline-variant/30 flex justify-center items-center relative z-10">
-<div class="flex gap-3">
-<div class="w-2 h-2 bg-primary rounded-full"></div>
-<div class="w-2 h-2 bg-primary rounded-full opacity-50"></div>
-<div class="w-2 h-2 bg-primary rounded-full opacity-20"></div>
-</div>
-</footer>
 </div>
 </body></html>
